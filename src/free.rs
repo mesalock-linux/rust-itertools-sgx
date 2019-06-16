@@ -4,6 +4,8 @@
 //! argument, so the resulting code may be easier to read.
 
 #[cfg(feature = "use_std")]
+use std::prelude::v1::*;
+#[cfg(feature = "use_std")]
 use std::fmt::Display;
 use std::iter::{self, Zip};
 #[cfg(feature = "use_std")]

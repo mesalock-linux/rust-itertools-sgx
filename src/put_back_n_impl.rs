@@ -1,3 +1,4 @@
+use std::prelude::v1::*;
 use size_hint;
 
 /// An iterator adaptor that allows putting multiple

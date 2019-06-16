@@ -1,5 +1,6 @@
 #![cfg(feature = "use_std")]
 
+use std::prelude::v1::*;
 use size_hint;
 use Itertools;
 

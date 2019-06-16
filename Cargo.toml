@@ -19,20 +19,22 @@ test = false
 
 [dependencies]
 either = { version = "1.0", default-features = false }
+sgx_tstd = { rev = "v1.1.0", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
 
-[dev-dependencies]
-rand = "0.6"
+#[dev-dependencies]
+#rand = "0.6"
 
-[dev-dependencies.quickcheck]
-version = "0.7"
-default-features = false
+#[dev-dependencies.quickcheck]
+#version = "0.7"
+#default-features = false
 
-[dev-dependencies.permutohedron]
-version = "0.2"
+#[dev-dependencies.permutohedron]
+#version = "0.2"
 
 [features]
-default = ["use_std"]
-use_std = []
+default = ["use_std", "mesalock_sgx"]
+use_std = ["mesalock_sgx"]
+mesalock_sgx = ["sgx_tstd"]
 
 [profile]
 bench = { debug = true }
