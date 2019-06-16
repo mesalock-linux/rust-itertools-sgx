@@ -47,6 +47,15 @@
 //! [`Iterator`]: https://doc.rust-lang.org/std/iter/trait.Iterator.html
 #![doc(html_root_url="https://docs.rs/itertools/0.8/")]
 
+#![cfg_attr(all(feature = "mesalock_sgx", not(target_env = "sgx"), feature = "use_std"), no_std)]
+#![cfg_attr(all(feature = "mesalock_sgx", target_env = "sgx"), feature(rustc_private))]
+#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx"), feature = "use_std"))]
+#[macro_use]
+extern crate sgx_tstd as std;
+
+//#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx"), feature = "use_std"))]
+use std::prelude::v1::*;
+
 extern crate either;
 
 #[cfg(not(feature = "use_std"))]
@@ -1604,7 +1613,7 @@ pub trait Itertools : Iterator {
     /// ```
     fn format_with<F>(self, sep: &str, format: F) -> FormatWith<Self, F>
         where Self: Sized,
-              F: FnMut(Self::Item, &mut FnMut(&fmt::Display) -> fmt::Result) -> fmt::Result,
+              F: FnMut(Self::Item, &mut dyn FnMut(&dyn fmt::Display) -> fmt::Result) -> fmt::Result,
     {
         format::new_format(self, sep, format)
     }
