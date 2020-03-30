@@ -19,7 +19,7 @@ test = false
 
 [dependencies]
 either = { version = "1.0", default-features = false }
-sgx_tstd = { rev = "v1.1.0", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
+sgx_tstd = { rev = "v1.1.1", git = "https://github.com/apache/teaclave-sgx-sdk.git", optional = true }
 
 #[dev-dependencies]
 #rand = "0.6"
